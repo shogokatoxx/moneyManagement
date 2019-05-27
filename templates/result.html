@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
+    <title>moneyManagement</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1><a href="/">MoneyManagement</a></h1>
+      </div>
+      <nav>
+        <ul class="global-nav">
+          <li><a href="">total</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="main">
+      <div class="content">
+        {% for data in datas %}
+        {% if data == {} %}
+          <div></div>
+        {% else %}
+        <div class="lists">
+          <p class="name">{{ data.forms }}</p>
+          <p class="date">{{ data.money }}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="total">
+        <h3 id ="total">合計</h3>
+      </div>
+    </div>
+    <footer>
+      <small>(c)shogokatoxx</small>
+    </footer>
+    <script>
+      const total = document.getElementsByClassName('date');
+      var t = 0;
+      var x = total.length;
+      for(let i = 0;i<=x-1;i++){
+        num = total[i].textContent;
+        t += Number(num);
+      }
+      document.getElementById('total').textContent = "合計 "+t+"円" ;
+    </script>
+  </body>
+</html>

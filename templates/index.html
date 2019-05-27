@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
+    <title>moneyManagement</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1><a href="">MoneyManagement</a></h1>
+      </div>
+      <nav>
+        <ul class="global-nav">
+          <li><a href="/result">total</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="main">
+      <div class="content">
+        {% for data in datas %}
+        {% if data == {} %}
+          <div></div>
+        {% else %}
+            <div class="lists">
+              <p class="name">{{ data.forms }}</p>
+              <p class="date">{{ data.create_time }}</p>
+              <h3 class="money">{{ data.money }}円</h3>
+              <p class="text">{{ data.text|nl2br }}</p>
+              <a href="/delete/{{ loop.index }}">返済</a>
+            </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <form action="/save" method="post">
+        <p>相手</p>
+        <input type="text" id="forms" name="forms">
+        <p>金額</p>
+        <input type="text" id="money" name="money">
+        <p>内容</p>
+        <textarea id="text" name="text"></textarea>
+        <button>保存</button>
+      </form>
+    </div>
+    <footer>
+      <small>(c)shogokatoxx</small>
+    </footer>
+  </body>
+</html>
